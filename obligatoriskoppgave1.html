@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Obligatorisk oppgave 1</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+
+</head>
+
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fix"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script src="obligatoriskoppgave1.js"></script>
+    <script>
+
+        // Unit test 1, sjekke om datoen er gyldig.
+        QUnit.test("Sjekke at datoen er gyldig", function (assert) {
+            const isValid = isDateValid('03.02.2020');
+            assert.equal(isValid, true);
+        });
+
+        // Init test 2, sjekke om lengden er ugyldig.
+        QUnit.test("Sjekke ugyldig lengde", function (assert) {
+            const isValid = isDateValid('03.02.20201');
+            assert.equal(isValid, false);
+        });
+
+        // Unit test 3, sjekke om lengden er gyldig.
+        QUnit.test("Sjekke gyldig lengde", function (assert) {
+            const isValid = isDateValid('03.02.2020');
+            assert.equal(isValid, true);
+        });
+
+        // Unit test 4, finne feil posisjoner for punktummene.
+        QUnit.test("Punktum i feil posisjon", function (assert) {
+            const isValid = isDateValid('003.2.2020')
+            const expected = false;
+            assert.equal(isValid, false);
+        });
+
+        // Unit test 4, finne riktig posisjoner for punktummene, 3. og 6. posisjon.
+        QUnit.test("Punktum i riktig posisjon", function (assert) {
+            const isValid = isDateValid('03.02.2020')
+            const expected = true;
+            assert.equal(isValid, true);
+        });
+
+        // Unit test 5, sjekke at år er feil.
+        QUnit.test("Sjekker at år ikke har 4 siffer", function (assert) {
+            const isValid = isDateValid('20201');
+            const expected = false;
+            assert.equal(isValid, false);
+        });
+
+        // Unit test 6, sjekke at år er riktig.
+        QUnit.test("Sjekker at år har 4 siffer", function (assert) {
+            const isValid = isDateValid('2020');
+            const expected = false;
+            assert.equal(isValid, false);
+        });
+
+        // Unit test 7, sjekker at det er skuddår.
+        QUnit.test("Sjekker at det er skuddår", function (assert) {
+            const isValid = isDateValid('29.02.2020');
+            const expected = true;
+            assert.equal(isValid, true);
+         });
+
+        // Unit test 8, sjekker at det ikke er skuddår.
+        QUnit.test("Sjekker at det ikke er skuddår", function (assert) {
+            const isValid = isDateValid('03.02.2020');
+            const expected = true;
+            assert.equal(isValid, true);
+        });
+
+        // Unit test 9, sjekke at måned ikke har 2 siffer.
+        QUnit.test("Sjekker at måned ikke har 2 siffer", function (assert) {
+            const isValid = isDateValid('03.012.2020');
+            const expected = false;
+            assert.equal(isValid, false);
+        });
+
+        // Unit test 10, sjekke at måned har 2 siffer.
+        QUnit.test("Sjekker at måned har 2 siffer", function (assert) {
+            const isValid = isDateValid('03.02.2020');
+            const expected = true;
+            assert.equal(isValid, true);
+        });
+
+        // Unit test 11.
+        QUnit.test("Sjekker dag", function (assert) {
+            const isValid = isDateValid('03.02.2020');
+            const expected = true;
+            assert.equal(isValid, true);
+        });
+
+    </script>
+
+</body>
+
+</html>
